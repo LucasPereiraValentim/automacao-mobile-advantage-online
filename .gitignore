@@ -10,10 +10,12 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.project
 
 ### Java ###
 # Compiled class file
 *.class
+*.classpath
 
 ###
 /test-output
