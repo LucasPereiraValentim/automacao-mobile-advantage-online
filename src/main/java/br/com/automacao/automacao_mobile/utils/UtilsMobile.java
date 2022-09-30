@@ -23,27 +23,39 @@ public class UtilsMobile {
 		return (AppiumDriver) DriverFactory.getInstanceAppium();
 	}
 	
+	public static void scrollLeft(WebElement elementInit, WebElement elementMoveTo) {
+		waitElementToBeClickable(elementInit);
+		int centerY = elementInit.getRect().y + (elementInit.getSize().height / 2);
+		double startX = elementInit.getRect().x + (elementInit.getSize().width * 0.9);
+		double endX = elementInit.getRect().x + (elementInit.getSize().width * 0.1);
+		scroll(centerY, startX, endX, elementMoveTo);
+	}
+	public static void scrollRight(WebElement elementInit, WebElement elementMoveTo) {
+		waitElementToBeClickable(elementInit);
+		int centerY = elementInit.getRect().y + (elementInit.getSize().height / 2);
+		double startX = elementInit.getRect().x + (elementInit.getSize().width * 0.1);
+		double endX = elementInit.getRect().x + (elementInit.getSize().width * 0.9);
+		scroll(centerY, startX, endX, elementMoveTo);
+	}
+	
+	
 	public static void scrollDown(WebElement elementInit, WebElement elementMoveTo) {
-
+		waitElementToBeClickable(elementInit);
 		int centerX = elementInit.getRect().x + (elementInit.getSize().width / 2);
-
 		double startY = elementInit.getRect().y + (elementInit.getSize().height * 0.9);
-
 		double endY = elementInit.getRect().y + (elementInit.getSize().height * 0.1);
 		scroll(centerX, startY, endY, elementMoveTo);
 	}
 	
 	public static void scrollTop(WebElement elementInit, WebElement elementMoveTo) {
-
+		waitElementToBeClickable(elementInit);
 		int centerX = elementInit.getRect().x + (elementInit.getSize().width / 2);
-
 		double startY = elementInit.getRect().y + (elementInit.getSize().height * 0.1);
-		
 		double endY = elementInit.getRect().y + (elementInit.getSize().height * 0.9);
 		scroll(centerX, startY, endY, elementMoveTo);
 	}
 
-	public static void scroll(int centerX, double startY, double endY, WebElement elementMoveTo) {
+	private static void scroll(int centerX, double startY, double endY, WebElement elementMoveTo) {
 		for (int i = 0; i < 20; i++) {
 			if (isVisible(elementMoveTo)) {
 				log.info("Elemento encontrado");
@@ -68,7 +80,7 @@ public class UtilsMobile {
 		}		
 	}
 	
-	public static boolean isVisible(WebElement element) {
+	private static boolean isVisible(WebElement element) {
 		try {
 			if (element.isDisplayed()) {
 				return true;
@@ -79,15 +91,15 @@ public class UtilsMobile {
 		return false;
 	}
 	
-	public static void waitElementToVisibility(WebElement element, Duration duration) {
+	public static void waitElementToVisibility(WebElement element) {
 		log.info("Aguardando elemento ficar visivel...");
-		new WebDriverWait(DriverFactory.getInstanceAppium(), duration)
+		new WebDriverWait(getDriver(), Duration.ofSeconds(40))
 		.until(ExpectedConditions.visibilityOf(element));
 	}
 	
-	public static void waitElementToBeClickable(WebElement element, Duration duration) {
+	public static void waitElementToBeClickable(WebElement element) {
 		log.info("Aguardando elemento ficar disponível para clique...");
-		new WebDriverWait(DriverFactory.getInstanceAppium(), duration)
+		new WebDriverWait(getDriver(), Duration.ofSeconds(40))
 		.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	
@@ -97,14 +109,17 @@ public class UtilsMobile {
 	}
 	
 	public static void click(WebElement element) {
+		waitElementToBeClickable(element);
 		element.click();
 	}
 	
 	public static void clearInput(WebElement element) {
+		waitElementToBeClickable(element);
 		element.clear();
 	}
 	
-	public static void writeField(WebElement element, String texto) {
+	public static void sendKeys(WebElement element, String texto) {
+		waitElementToBeClickable(element);
 		element.sendKeys(texto);
 	}
 	
@@ -115,5 +130,4 @@ public class UtilsMobile {
 			startsActivity.startActivity(new Activity(null, null));
 		}
 	}
-	
 }
