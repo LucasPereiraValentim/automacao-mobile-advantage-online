@@ -20,3 +20,5 @@ local.properties
 ###
 /test-output
 /target
+
+.idea
