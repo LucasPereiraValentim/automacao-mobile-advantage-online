@@ -1,0 +1,6 @@
+{
+    "platformVersion": "11.0",
+    "automationName": "uiautomator2",
+    "appActivity": "com.Advantage.aShopping.SplashActivity",
+    "appPackage": "com.Advantage.aShopping"
+}

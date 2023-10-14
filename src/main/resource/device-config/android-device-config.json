@@ -1,9 +1,0 @@
-{
-	"platformName": "Android",
-    "platformVersion": "11.0",
-    "deviceName": "Galaxy A20",
-    "udid": "RX8M50D4M5K",
-    "automationName": "UiAutomator2",
-    "appActivity": "com.Advantage.aShopping.SplashActivity",
-    "appPackage": "com.Advantage.aShopping" 
-}

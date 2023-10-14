@@ -1,4 +1,4 @@
-package br.com.advantageshoppingautomation.support;
+package br.com.advantageshoppingautomation.utils;
 
 import java.net.URL;
 import java.time.Duration;
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DriverFactory {
 
-	private static WebDriver instance;
+	private static AppiumDriver instance;
 	
 	private final static String URL_SERVER_APPIUM = "http://127.0.0.1:4723/wd/hub";
 
@@ -22,8 +22,7 @@ public class DriverFactory {
 			if (instance == null) {
 				if (getPlatformName().equalsIgnoreCase("android")) {
 					log.info("Conectando ao device \"" + getDeviceName() + "\"");
-					UiAutomator2Options uiAutomator = getOptions();
-					instance = new AppiumDriver(new URL(URL_SERVER_APPIUM), uiAutomator);
+					instance = new AppiumDriver(new URL(URL_SERVER_APPIUM), getOptions());
 				}
 			} else if (getPlatformName().equalsIgnoreCase("ios")) {
 
