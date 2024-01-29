@@ -26,6 +26,7 @@ public class Scroll {
                 break;
             case RIGHT:
                 scrollRight(elementInit, elementMoveTo);
+                break;
             default:
                 throw new RuntimeException("Direção de scroll incorreta...");
         }
