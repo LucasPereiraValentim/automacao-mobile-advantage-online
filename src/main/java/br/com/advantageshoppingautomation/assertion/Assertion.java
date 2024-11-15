@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Assertion {
 	
-	public void validationTest(List<WebElement> elements, String testName, String description) {
+	public void validationTestByVisible(List<WebElement> elements, String testName, String description) {
 		createReport(testName);
 		test.log(LogStatus.INFO, description);
 		for (WebElement element : elements) {
@@ -34,5 +34,23 @@ public class Assertion {
 			}
 		}
 		closeReport();
-	}	
+	}
+
+	public void validationTestByText(List<WebElement> elements, String testName, String description, String text) {
+		createReport(testName);
+		test.log(LogStatus.INFO, description);
+		for (WebElement element : elements) {
+			Boolean isText = element.getText().equals(text);
+			if (isText) {
+				log.info("Teste" + testName + Status.SUCESSO.toString());
+				screenshot(Status.SUCESSO, description);
+				assertTrue(isText);
+			} else {
+				log.info("Teste" + testName + Status.FALHOU.toString());
+				screenshot(Status.FALHOU, description);
+				assertTrue(isText);
+			}
+		}
+		closeReport();
+	}
 }

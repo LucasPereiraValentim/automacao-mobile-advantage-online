@@ -4,7 +4,7 @@
 	<test name="Login">
 		<parameter name="udid" value="emulator-5554" />
 		<parameter name="platformName" value="android" />
-		<parameter name="deviceName" value="Pixel 2" />
+		<parameter name="deviceName" value="Pixel" />
 		<classes>
 			<class
 				name="br.com.advantageshoppingautomation.runners.RunnerMobile" />

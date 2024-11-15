@@ -3,7 +3,6 @@ package br.com.advantageshoppingautomation.utils;
 import java.net.URL;
 import java.time.Duration;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
 import io.appium.java_client.AppiumDriver;
@@ -14,18 +13,23 @@ import lombok.extern.slf4j.Slf4j;
 public class DriverFactory {
 
 	private static AppiumDriver instance;
-	
+
+	private DriverFactory() {
+
+	}
+
 	private final static String URL_SERVER_APPIUM = "http://127.0.0.1:4723/wd/hub";
 
-	public static WebDriver getDriver() {
+	public static AppiumDriver getDriver() {
 		try {
 			if (instance == null) {
 				if (getPlatformName().equalsIgnoreCase("android")) {
 					log.info("Conectando ao device \"" + getDeviceName() + "\"");
 					instance = new AppiumDriver(new URL(URL_SERVER_APPIUM), getOptions());
+					return instance;
 				}
 			} else if (getPlatformName().equalsIgnoreCase("ios")) {
-
+				return null;
 			}
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao conectar ao device \"" + getDeviceName() + "\"" + e.getMessage());
@@ -35,7 +39,7 @@ public class DriverFactory {
 
 	private static UiAutomator2Options getOptions() {
 		ReadJson readJson = new ReadJson();
-		UiAutomator2Options options = new UiAutomator2Options()
+		return new UiAutomator2Options()
 				.setPlatformName(getPlatformName())
 				.setPlatformVersion(readJson.getCapabilities().get("platformVersion").toString())
 				.setUdid(getUdid())
@@ -45,7 +49,6 @@ public class DriverFactory {
 				.setAutomationName(readJson.getCapabilities().get("automationName").toString())
 				.setAutoGrantPermissions(true)
 				.setAppWaitDuration(Duration.ofSeconds(30));
-		return options;
 	}
 	
 	private static String getUdid() {

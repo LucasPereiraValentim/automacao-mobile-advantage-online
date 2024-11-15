@@ -1,4 +1,4 @@
-package br.com.advantageshoppingautomation.home;
+package br.com.advantageshoppingautomation.home.page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +16,9 @@ public class HomePage {
 	
 	@AndroidFindBy(id = "com.Advantage.aShopping:id/editTextSearch")
 	private WebElement CAMPO_SEARCH;
+
+	@AndroidFindBy(xpath = "//*[@resource-id='com.Advantage.aShopping:id/textViewMenuUser']")
+	private WebElement BOTAO_LOGIN;
 	
 	public HomePage() {
 		PageFactory.initElements(new AppiumFieldDecorator(UtilsMobile.getDriver()), this);

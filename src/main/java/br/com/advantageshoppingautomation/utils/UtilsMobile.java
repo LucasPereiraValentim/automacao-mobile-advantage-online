@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UtilsMobile {
 	
 	public static AppiumDriver getDriver() {
-		return (AppiumDriver) DriverFactory.getDriver();
+		return DriverFactory.getDriver();
 	}
 	
 

@@ -2,7 +2,7 @@ package br.com.advantageshoppingautomation.utils;
 
 import java.io.FileReader;
 
-import br.com.advantageshoppingautomation.utils.DriverFactory;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 

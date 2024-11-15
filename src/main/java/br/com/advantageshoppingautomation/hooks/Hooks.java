@@ -14,7 +14,7 @@ public class Hooks {
     }
 
     @After
-    public void cleanUp() {
+    public void after() {
     	
     }
 
